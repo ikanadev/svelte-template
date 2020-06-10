@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  svelte-dev:
+    container_name: svelte-dev_cont
+    image: svelte-template:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ".:/app"
+    ports:
+      - "5000:5000"
+      - "35729:35729"
+    networks: 
+      - svelte
+  svelte-prod:
+    container_name: svelte-prod_cont
+    image: svelte-template:prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    networks: 
+      - svelte
+networks: 
+  svelte:
